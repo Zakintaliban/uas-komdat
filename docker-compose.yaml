@@ -1,0 +1,23 @@
+version: '3'
+services:
+  server:
+    build: 
+      context: ./server
+    networks:
+      network1:
+        ipv4_address: 172.28.0.2
+
+  client:
+    build:
+      context: ./client
+    networks:
+      network1:
+        ipv4_address: 172.28.0.3
+
+networks:
+  network1:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
